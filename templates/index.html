@@ -31,7 +31,6 @@
       padding: 32px 16px 64px;
     }
 
-    /* ── Gradient orbs ── */
     body::before, body::after {
       content: '';
       position: fixed;
@@ -46,7 +45,6 @@
 
     .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
 
-    /* ── Header ── */
     header { text-align: center; margin-bottom: 48px; }
     header .badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -59,7 +57,6 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     header p { color: var(--muted); margin-top: 10px; font-size: 16px; }
 
-    /* ── Upload grid ── */
     .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
     @media(max-width:600px) { .upload-grid { grid-template-columns: 1fr; } }
 
@@ -71,7 +68,6 @@
     }
     .upload-card:hover, .upload-card.drag { border-color: var(--accent); background: rgba(124,106,247,0.07); }
     .upload-card.ready { border-style: solid; border-color: var(--green); background: rgba(52,211,153,0.06); }
-
     .upload-card input[type="file"] {
       position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
     }
@@ -85,7 +81,6 @@
     .upload-card.ready .file-name { display: block; }
     .upload-card.ready .upload-hint { display: none; }
 
-    /* ── Button ── */
     .btn-wrap { text-align: center; margin-bottom: 36px; }
     button#checkBtn {
       background: linear-gradient(135deg, var(--accent), #5e5af7);
@@ -97,31 +92,29 @@
     button#checkBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,106,247,.5); }
     button#checkBtn:disabled { opacity: .5; cursor: not-allowed; }
 
-    /* ── Loader ── */
     #loader { display: none; text-align: center; margin: 24px 0; }
     .spinner {
       width: 40px; height: 40px; margin: 0 auto 12px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
+      border: 3px solid var(--border); border-top-color: var(--accent);
       border-radius: 50%; animation: spin .8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Score cards ── */
     #results { display: none; }
     .score-banner {
       background: linear-gradient(135deg, rgba(124,106,247,.2), rgba(94,187,255,.15));
       border: 1px solid rgba(124,106,247,.3); border-radius: var(--radius);
-      padding: 32px; text-align: center; margin-bottom: 24px;
+      padding: 32px; text-align: center; margin-bottom: 8px;
     }
     .score-banner .label { font-size: 13px; color: var(--muted); font-weight: 500; letter-spacing:.06em; text-transform:uppercase; margin-bottom: 8px; }
     .score-banner .score-value { font-size: 72px; font-weight: 800;
       background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
 
+    #strategyBadge { text-align:center; font-size:11px; color:var(--muted); margin-bottom:24px; }
+
     .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
     @media(max-width:500px) { .stat-grid { grid-template-columns: 1fr; } }
-
     .stat-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 12px; padding: 20px; text-align: center;
@@ -132,7 +125,6 @@
     .wrong-card   .stat-num { color: var(--red); }
     .skip-card    .stat-num { color: var(--muted); }
 
-    /* ── Filter tabs ── */
     .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
     .filter-btn {
       background: var(--card); border: 1px solid var(--border); color: var(--muted);
@@ -141,7 +133,6 @@
     }
     .filter-btn.active, .filter-btn:hover { background: rgba(124,106,247,.15); border-color: var(--accent); color: var(--text); }
 
-    /* ── Table ── */
     .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
     thead th {
@@ -153,7 +144,7 @@
     tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: rgba(255,255,255,.03); }
-    tbody td { padding: 13px 16px; font-family: 'Inter', monospace; }
+    tbody td { padding: 13px 16px; }
     td.qid { color: var(--muted); font-size: 12px; }
 
     .badge-status {
@@ -166,8 +157,8 @@
 
     .error-box {
       background: rgba(248,113,113,.08); border: 1px solid rgba(248,113,113,.25);
-      border-radius: 12px; padding: 16px 20px; color: var(--red); font-size: 14px;
-      margin-bottom: 20px; display: none;
+      border-radius: 12px; padding: 16px 20px; color: var(--red); font-size: 13px;
+      margin-bottom: 20px; display: none; white-space: pre-wrap; word-break: break-all;
     }
   </style>
 </head>
@@ -175,7 +166,7 @@
   <div class="container">
     <header>
       <div class="badge">📘 CUET PG</div>
-      <h1>ACME ACADEMY | Answer Key Checker</h1>
+      <h1>Answer Key Checker</h1>
       <p>Upload your Response Sheet &amp; Answer Key PDFs to calculate your score instantly.</p>
     </header>
 
@@ -208,6 +199,7 @@
         <div class="label">🎯 Your Final Score</div>
         <div class="score-value" id="scoreVal">0</div>
       </div>
+      <p id="strategyBadge"></p>
 
       <div class="stat-grid">
         <div class="stat-card correct-card"><div class="stat-num" id="correctCount">0</div><div class="stat-label">✅ Correct</div></div>
@@ -249,41 +241,43 @@
       card.classList.add('ready');
       nameEl.textContent = '✓ ' + file.name;
     }
-
     function updateBtn() {
       checkBtn.disabled = !(responseInput.files[0] && answerInput.files[0]);
     }
 
     ['response','answer'].forEach(key => {
-      const input = document.getElementById(key + 'File');
-      const card  = document.getElementById('card-' + key);
-      const nameEl= document.getElementById(key + 'Name');
-      const zone  = card;
-
+      const input  = document.getElementById(key + 'File');
+      const card   = document.getElementById('card-' + key);
+      const nameEl = document.getElementById(key + 'Name');
       input.addEventListener('change', () => {
         if (input.files[0]) { markReady(card, nameEl, input.files[0]); updateBtn(); }
       });
-      zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
-      zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
-      zone.addEventListener('drop', e => {
-        e.preventDefault(); zone.classList.remove('drag');
-        const dt = e.dataTransfer;
-        if (dt.files[0]?.type === 'application/pdf') {
-          const wrapped = new DataTransfer(); wrapped.items.add(dt.files[0]);
-          input.files = wrapped.files;
-          markReady(card, nameEl, dt.files[0]); updateBtn();
+      card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drag'); });
+      card.addEventListener('dragleave', () => card.classList.remove('drag'));
+      card.addEventListener('drop', e => {
+        e.preventDefault(); card.classList.remove('drag');
+        if (e.dataTransfer.files[0]?.type === 'application/pdf') {
+          const dt = new DataTransfer(); dt.items.add(e.dataTransfer.files[0]);
+          input.files = dt.files;
+          markReady(card, nameEl, e.dataTransfer.files[0]); updateBtn();
         }
       });
     });
+
+    const strategyLabels = {
+      keyword:    '🔤 Parsed using keyword labels',
+      anchored:   '🔗 Parsed using ID-anchored detection (format-independent)',
+      sequential: '🔢 Parsed using sequential pattern detection'
+    };
 
     checkBtn.addEventListener('click', async () => {
       const form = new FormData();
       form.append('response_sheet', responseInput.files[0]);
       form.append('answer_key',     answerInput.files[0]);
 
-      document.getElementById('results').style.display = 'none';
+      document.getElementById('results').style.display  = 'none';
       document.getElementById('errorBox').style.display = 'none';
-      document.getElementById('loader').style.display = 'block';
+      document.getElementById('loader').style.display   = 'block';
       checkBtn.disabled = true;
 
       try {
@@ -294,21 +288,18 @@
         if (data.error) {
           const box = document.getElementById('errorBox');
           let msg = '❌ ' + data.error;
-          if (data.debug_answer_sample) {
-            msg += '\n\n📄 Answer Key raw text sample:\n' + data.debug_answer_sample;
-          }
-          if (data.debug_response_sample) {
-            msg += '\n\n📄 Response Sheet raw text sample:\n' + data.debug_response_sample;
-          }
-          box.style.whiteSpace = 'pre-wrap';
+          if (data.debug_answer_sample)   msg += '\n\n📄 Answer Key raw text:\n'   + data.debug_answer_sample;
+          if (data.debug_response_sample) msg += '\n\n📄 Response Sheet raw text:\n' + data.debug_response_sample;
           box.textContent = msg;
           box.style.display = 'block';
         } else {
           allResults = data.results;
-          document.getElementById('scoreVal').textContent    = data.score;
+          document.getElementById('scoreVal').textContent     = data.score;
           document.getElementById('correctCount').textContent = data.correct;
           document.getElementById('wrongCount').textContent   = data.incorrect;
           document.getElementById('skipCount').textContent    = data.unattempted;
+          document.getElementById('strategyBadge').textContent =
+            strategyLabels[data.strategy_used] || ('Strategy: ' + data.strategy_used);
           renderTable('All');
           document.getElementById('results').style.display = 'block';
         }
